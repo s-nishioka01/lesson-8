@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>日付計算アプリ</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+        <div class="top-wrapper wrapper">
+            <div class="title">
+                <h1>日付計算</h1>
+            </div>
+            <div class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+            <div class="calculation-section">
+                <div class="form-section">
+                    <form method="post" th:action="@{/calculate}" class="input-form calculation-form">
+                        <div class="input-section date-input-section">
+                            <p>1. 日付を選択</p>
+                            <input type="date" name="date" th:value="${today}">
+                        </div>
+                        <div class="input-section formula-input-section">
+                            <p>2. 計算式を選択</p>
+                            <select name="formula" id="formula-option">
+                                <option th:each="formula:${formulaList}" th:text="${formula.name}" th:value="${formula.id}" ></option>
+                            </select>
+                            <a href="formula">計算式を登録</a>
+                        </div>
+                        <div class="submit-btn-section">
+                            <input class="submit-btn calculate-btn" type="submit" value="計算">
+                        </div>
+                    </form>
+                </div>
+                <div class="logout-section">
+                    <a th:href="@{/logout}">ログアウト</a>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

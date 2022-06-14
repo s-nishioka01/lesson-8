@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>日付計算アプリ</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+        <div class="result-wrapper wrapper">
+            <div class="title">
+                <h1>計算結果</h1>
+            </div>
+            <div class="result-section">
+                <p th:text="${date} + 'の' + ${formula} + 'は'"></p>
+                <div class="result-date">
+                    <p th:text="${result}" class="result-text"></p>
+                </div>
+                
+            </div>
+            <div class="back-btn">
+                <a href="/top">戻る</a>
+            </div>
+            <div class="logout-section">
+                <a th:href="@{/logout}">ログアウト</a>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

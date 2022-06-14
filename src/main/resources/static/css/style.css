@@ -1,0 +1,308 @@
+@charset "UTF-8";
+
+/*----メイン----*/
+*{
+    box-sizing: border-box;
+}
+.wrapper{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 40px 30px 100px 30px;
+    border-radius: 20px;
+    background-color: #f1f8fd;
+}
+
+.title{
+	text-align: center;
+}
+
+.title h1{
+	font-size: 24px;
+    margin: 0;
+}
+
+/*----トップページ----*/
+.calculation-section{
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+/*----フォーム----*/
+.input-section{
+    margin: 20px 0;
+}
+
+.input-section input, .input-section select{
+    width: 100%;
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+.input-section p{
+    margin-bottom: 10px;
+}
+
+.input-section a{
+    font-size: 14px;
+}
+
+.calculation-value-input-section{
+    width: 100%;
+}
+
+.calculation-value-input{
+    display: flex;
+    justify-content: space-between;
+}
+
+.calculation-value-input input{
+    height: 24px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+}
+
+.calculation-value-input label{
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.calculation-value-input label:last-child{
+    margin-right: 0;
+}
+
+.plus-or-minus-btn{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.plus-or-minus-btn input{
+    display: inline;
+    width: 10%;
+    height: 20px;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+.plus-or-minus-btn label{
+    font-size: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.plus-or-minus-btn label:last-child{
+    margin-right: 0;
+}
+
+.submit-btn-section{
+    margin: 40px 0;
+    text-align: center;
+}
+
+.submit-btn{
+	cursor: pointer;
+	width: 100px;
+    height: 30px;
+}
+
+/*----計算結果----*/
+.result-section{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.result-date{
+    width: 100%;
+    margin: 20px 0 40px 0;
+    text-align: center;
+    background-color: #fff;
+    border: 3px solid #6f6f6f;
+    border-radius: 5px;
+}
+
+.result-date p{
+    font-size: 20px;
+}
+
+/*----計算式一覧----*/
+.formula-list-section{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.table-section{
+    margin-bottom: 40px;
+}
+
+.create-link-btn{
+	width: 150px;
+	height: 30px;
+	margin: 0 auto;
+	margin-top: 20px;
+	background-color: #abd8cd;
+	box-shadow: 0px 1px #587d7b;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.create-link-btn a{
+    display: block;
+	color: #222;
+	text-decoration: none;
+	line-height: 30px;
+    font-size: 14px;
+}
+
+.create-link-btn:hover{
+	background-color: #bbece0;
+}
+
+.btn:active{
+	position: relative;
+	top: 1px;
+	box-shadow: none;
+}
+
+/*----テーブル----*/
+.database-table{
+	text-align: center;
+	margin: 0 auto;
+	border: 3px solid #555555;
+	border-collapse: collapse;
+}
+
+.database-table th{
+	border: 1px solid #999;
+	border-bottom: 2px solid #555555;
+	padding: 4px;
+}
+
+.database-table td{
+    background-color: #fff;
+	border: 1px solid #999;
+	padding: 4px;
+}
+
+.formula-table{
+    width: 90%;
+}
+
+.formula-table th{
+    background-color: #b2d0db;
+}
+
+.formula-table-name{
+	width: 25%;
+}
+
+.formula-table-edit-delete{
+	width: 25%;
+}
+
+.table-btn a{
+	display: block;
+	color: #222;
+	text-decoration: none;
+    font-size: 13px;
+}
+
+.edit-link-btn, .delete-link-btn{
+	display: inline-block;
+	width: 45px;
+	border-radius: 3px;
+	text-align: center;
+	margin-bottom: 3px;
+}
+
+.edit-link-btn{
+	margin-right: 5px;
+	background-color: #9bb0cf;
+	box-shadow: 0px 1px #8193ad;	
+}
+
+.edit-link-btn:hover{
+	background-color: #b1c8ea;
+}
+
+.delete-link-btn{
+	background-color: #cb7979;
+	box-shadow: 0px 1px #9d5b5b;
+}
+
+.delete-link-btn:hover{
+	background-color: #e29090;
+}
+
+/*----新規作成ページ----*/
+.new-formula-section{
+    width: 40%;
+    margin: 0 auto;
+}
+
+/*----編集ページ----*/
+.edit-formula-section{
+    width: 40%;
+    margin: 0 auto;
+}
+
+/*----削除確認ページ----*/
+.delete-formula-section{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.confirm-delete-message{
+	margin: 20px 0 35px 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+/*----ログインページ----*/
+.login-wrapper{
+    background-color: #ffffff;
+    border: 2px solid #555555;
+}
+
+.login-error-message{
+    color: #ff0000;
+}
+
+.login-form-section{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+/*----その他共通部分----*/
+.cancel-btn{
+	text-align: center;
+    margin-bottom: 20px;
+}
+
+.back-btn{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.error-message{
+	color: #ff0000;
+	text-align: center;
+}
+
+.validation-message{
+	list-style: none;
+}
+
+.validation-message li{
+	color: #ff0000;
+}
+
+.logout-section{
+    margin-top: 20px;
+    text-align: center;
+}

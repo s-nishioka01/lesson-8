@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>計算式編集フォーム</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+		<div class="edit-formula-wrapper wrapper">
+			<div class="title">
+				<h1>計算式編集フォーム</h1>
+			</div>
+			<ul class="validation-message" th:if="${validationError}" th:each="error: ${validationError}">
+				<li th:text="${error}"></li>
+			</ul>
+			<div class="edit-formula-section">
+				<div class="form-section">
+					<form method="post" th:action="@{/edit/} + ${formula.id}" th:object="${formula}" class="input-form edit-form">
+						<div class="input-section name-input-section">
+							<p>計算式名</p>
+							<input type="text" th:field="*{name}">
+						</div>
+						<div class="input-section calculation-value-input-section">
+							<p>計算値</p>
+							<div class="calculation-value-input">
+								<input type="number" th:field="*{year}"><label for="year">年</label>
+								<input type="number" th:field="*{month}"><label for="month">月</label>
+								<input type="number" th:field="*{day}"><label for="day">日</label>
+							</div>
+							<div class="plus-or-minus-btn">
+								<input type="radio" id="minus" th:field="*{plusOrMinus}" value="−" th:checked="${isMinus == 1}"><label for="minus">前</label>
+								<input type="radio" id="plus" th:field="*{plusOrMinus}" value="＋" th:checked="${isPlus == 1}"><label for="plus">後</label>
+							</div>
+						</div>
+						<div class="submit-btn-section">
+							<input class="submit-btn calculate-btn" type="submit" value="登録">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="cancel-btn">
+				<a href="/formula">キャンセル</a>
+			</div>
+			<div class="logout-section">
+				<a th:href="@{/logout}">ログアウト</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

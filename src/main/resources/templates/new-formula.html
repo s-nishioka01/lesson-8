@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>計算式新規作成フォーム</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+		<div class="new-formula-wrapper wrapper">
+			<div class="title">
+				<h1>計算式新規作成フォーム</h1>
+			</div>
+			<ul class="validation-message" th:if="${validationError}" th:each="error: ${validationError}">
+				<li th:text="${error}"></li>
+			</ul>
+			<div class="new-formula-section">
+				<div class="form-section">
+					<form method="post" th:action="@{/new}" class="input-form new-form">
+						<div class="input-section name-input-section">
+							<p>計算式名</p>
+							<input type="text" name="name">
+						</div>
+						<div class="input-section calculation-value-input-section">
+							<p>計算値</p>
+							<div class="calculation-value-input">
+								<input type="number" name="year" value="0"><label for="year">年</label>
+								<input type="number" name="month" value="0"><label for="month">月</label>
+								<input type="number" name="day" value="0"><label for="day">日</label>
+							</div>
+							<div class="plus-or-minus-btn">
+								<input type="radio" id="minus" name="plusOrMinus" value="−" checked><label for="minus">前</label>
+								<input type="radio" id="plus" name="plusOrMinus" value="＋"><label for="plus">後</label>
+							</div>
+						</div>
+						<div class="submit-btn-section">
+							<input class="submit-btn calculate-btn" type="submit" value="登録">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="cancel-btn">
+				<a href="/formula">キャンセル</a>
+			</div>
+			<div class="logout-section">
+				<a th:href="@{/logout}">ログアウト</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

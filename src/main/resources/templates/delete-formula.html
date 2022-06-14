@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>削除確認</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+		<div class="delete-formula-wrapper wrapper">
+			<div class="delete-formula-section">
+				<div class="confirm-delete-message">
+					<p>以下の計算式を削除しますか？</p>
+				</div>
+				<table class="database-table formula-table delete-table">
+					<tr>
+						<th>計算式名</th>
+						<th>年</th>
+						<th>月</th>
+						<th>日</th>
+						<th>＋/−</th>
+					</tr>
+					<tr>
+						<td th:text="${formula.name}"></td>
+						<td th:text="${formula.year}"></td>
+						<td th:text="${formula.month}"></td>
+						<td th:text="${formula.day}"></td>
+						<td th:text="${formula.plusOrMinus}"></td>
+					</tr>
+				</table>
+				<div class="form-section">
+					<form method="post" th:action="@{/delete/} + ${formula.id}">
+						<div class="submit-btn-section">
+                            <input class="submit-btn delete-submit-btn" type="submit" value="削除">
+                        </div>
+					</form>
+				</div>
+			</div>
+			<div class="cancel-btn">
+				<a href="/formula">キャンセル</a>
+			</div>
+			<div class="logout-section">
+				<a th:href="@{/logout}">ログアウト</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

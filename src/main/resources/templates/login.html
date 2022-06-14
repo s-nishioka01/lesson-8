@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ログイン</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="login-wrapper wrapper">
+        <div class="title">
+            <h1>日付計算アプリ</h1>
+        </div>
+        <div class="login-form-section">
+            <div class="form-section">
+                <form method="post" th:action="@{perform_login}" class="input-form login-form">
+                    <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" 
+                        th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                        class="login-error-message"></p>
+                    <div class="input-section login-username-section">
+                        <label for="username">ユーザーネーム</label>
+                        <input type="text" name="username" id="username">
+                    </div>
+                    <div class="input-section login-password-section">
+                        <label for="password">パスワード</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="submit-btn-section">
+                        <button type="submit">ログイン</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

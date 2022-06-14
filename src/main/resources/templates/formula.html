@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>計算式リスト</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="main">
+		<div class="formula-list-wrapper wrapper">
+			<div class="title">
+				<h1>計算式リスト</h1>
+			</div>
+			<div class="error-message">
+				<p th:text="${error}"></p>
+			</div>
+			<div class="formula-list-section">
+				<div class="table-section">
+					<table class="database-table formula-table">
+						<tr>
+							<th>計算式名</th>
+							<th>年</th>
+							<th>月</th>
+							<th>日</th>
+							<th>＋/−</th>
+							<th>編集</th>
+						</tr>
+						<tr th:each="formula:${formulaList}">
+							<td th:text="${formula.name}" class="formula-table-name"></td>
+							<td th:text="${formula.year}" class="formula-table-year"></td>
+							<td th:text="${formula.month}" class="formula-table-month"></td>
+							<td th:text="${formula.day}" class="formula-table-day"></td>
+							<td th:text="${formula.plusOrMinus}" class="formula-table-plus-or-minus"></td>
+							<td class="formula-table-edit-delete">
+								<div class="btn table-btn edit-link-btn">
+									<a th:href="@{'/edit/' + ${formula.id}}" >編集</a>
+								</div>
+								<div class="btn table-btn delete-link-btn">
+									<a th:href="@{'/delete/' + ${formula.id}}" >削除</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn create-link-btn">
+					<a href="/new">新規登録</a>
+				</div>
+				<div class="back-btn">
+					<a href="/top">日付計算に戻る</a>
+				</div>
+				<div class="logout-section">
+                    <a th:href="@{/logout}">ログアウト</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

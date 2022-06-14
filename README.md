@@ -26,7 +26,7 @@ MySQL 8.0
 MyBatis Spring Boot Starter 2.2.2  
 
 ## 主な機能
-- ログイン
+- ログイン  
 ユーザーネームとパスワードを入力し、ログインボタンを押すとログインできる。各ページにあるログアウトボタンを押す事でログアウトできる。  
 ![lesson8login](https://user-images.githubusercontent.com/103230014/173575686-f094fccc-a060-4203-9790-f44531450f37.gif)  
 
@@ -36,6 +36,7 @@ MyBatis Spring Boot Starter 2.2.2
 
 - 計算式リスト  
 データベースに登録されている計算式が一覧で表示される。  
+<img width="1129" alt="スクリーンショット 2022-06-14 21 29 15" src="https://user-images.githubusercontent.com/103230014/173577306-f593715d-b53e-449a-ac27-1b082643d477.png">  
 
 - 新規登録  
 計算式名を入力し、計算値の要素をそれぞれ選択し、登録ボタンを押すと計算式が新しく計算式リストに追加される。  

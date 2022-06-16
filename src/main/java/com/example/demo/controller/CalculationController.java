@@ -44,21 +44,9 @@ public class CalculationController {
 
 		try {
 
-			Formula formula = formulaService.findOne(id);
 			LocalDate date = LocalDate.parse(calculationForm.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			LocalDate result;
-
-			if (formula.getPlusOrMinus().equals("＋")) {
-				result = date.plusYears(formula.getYear()).plusMonths(formula.getMonth()).plusDays(formula.getDay());
-			} else if (formula.getPlusOrMinus().equals("−")) {
-				result = date.minusYears(formula.getYear()).minusMonths(formula.getMonth()).minusDays(formula.getDay());
-			} else {
-				LocalDate today = LocalDate.now();
-				model.addAttribute("today", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-				model.addAttribute("formulaList", formulaService.getFormulaList());
-				model.addAttribute("error", "この計算式は有効ではありません");
-				return "top";
-			}
+			Formula formula = formulaService.findOne(id);
+			LocalDate result = formulaService.calculateDate(formula, date);
 
 			model.addAttribute("date", date.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
 			model.addAttribute("formula", formula.getName());
@@ -77,7 +65,7 @@ public class CalculationController {
 				LocalDate today = LocalDate.now();
 				model.addAttribute("today", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 				model.addAttribute("formulaList", formulaService.getFormulaList());
-				model.addAttribute("error", "計算式が登録されていません");
+				model.addAttribute("error", e.getMessage());
 				return "top";
 			}
 

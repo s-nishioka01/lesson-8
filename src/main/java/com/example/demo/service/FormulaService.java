@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,25 @@ public class FormulaService {
 		this.formulaMapper = formulaMapper;
 	}
 
+	public LocalDate calculateDate(Formula formula, LocalDate date) throws Exception {
+		LocalDate result;
+		if (formula.getPlusOrMinus().equals("＋")) {
+			result = date.plusYears(formula.getYear()).plusMonths(formula.getMonth()).plusDays(formula.getDay());
+			return result;
+		} else if (formula.getPlusOrMinus().equals("−")) {
+			result = date.minusYears(formula.getYear()).minusMonths(formula.getMonth()).minusDays(formula.getDay());
+			return result;
+		} else {
+			throw new Exception("この計算式は有効ではありません");
+		}
+	}
+
 	public List<Formula> getFormulaList() {
 		return formulaMapper.findAll();
 	}
 
 	public Formula findOne(int id) throws Exception {
-		return formulaMapper.findOne(id).orElseThrow(() -> new Exception("計算式が登録されていませんa"));
+		return formulaMapper.findOne(id).orElseThrow(() -> new Exception("計算式が登録されていません"));
 	}
 
 	public void saveFormulaList(FormulaForm formulaForm) {

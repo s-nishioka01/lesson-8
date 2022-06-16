@@ -94,24 +94,37 @@ public class FormulaController {
 	@PostMapping("/edit/{id}")
 	public String update(@PathVariable int id, @Validated @ModelAttribute FormulaForm formulaForm, BindingResult result,
 			Model model) throws Exception {
-		if (result.hasErrors()) {
-			List<String> errorList = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errorList.add(error.getDefaultMessage());
+		try {
+			if (result.hasErrors()) {
+				List<String> errorList = new ArrayList<String>();
+				for (ObjectError error : result.getAllErrors()) {
+					errorList.add(error.getDefaultMessage());
+				}
+				model.addAttribute("formula", formulaService.findOne(id));
+				model.addAttribute("validationError", errorList);
+				return "edit-formula";
 			}
-			model.addAttribute("formula", formulaService.findOne(id));
-			model.addAttribute("validationError", errorList);
-			return "edit-formula";
+			formulaForm.setId(id);
+			formulaService.updateFormulaList(formulaForm);
+			return "redirect:/formula";
+		} catch (Exception e) {
+			model.addAttribute("formulaList", formulaService.getFormulaList());
+			model.addAttribute("error", "データが登録されていません");
+			return "formula";
 		}
-		formulaForm.setId(id);
-		formulaService.updateFormulaList(formulaForm);
-		return "redirect:/formula";
 	}
 
 	@PostMapping("/delete/{id}")
-	public String destroy(@PathVariable int id) {
-		formulaService.deleteFormulaList(id);
-		return "redirect:/formula";
+	public String destroy(@PathVariable int id, Model model) throws Exception {
+		try {
+			formulaService.deleteFormulaList(id);
+			return "redirect:/formula";
+		} catch (Exception e) {
+			model.addAttribute("formulaList", formulaService.getFormulaList());
+			model.addAttribute("error", "データが登録されていません");
+			return "formula";
+		}
+
 	}
 
 }

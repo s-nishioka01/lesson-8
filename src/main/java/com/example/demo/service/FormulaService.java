@@ -49,11 +49,13 @@ public class FormulaService {
 		formulaMapper.save(formulaForm);
 	}
 
-	public void updateFormulaList(FormulaForm formulaForm) {
+	public void updateFormulaList(FormulaForm formulaForm) throws Exception {
+		formulaMapper.findOne(formulaForm.getId()).orElseThrow(() -> new Exception("計算式が登録されていません"));
 		formulaMapper.update(formulaForm);
 	}
 
-	public void deleteFormulaList(int id) {
+	public void deleteFormulaList(int id) throws Exception {
+		formulaMapper.findOne(id).orElseThrow(() -> new Exception("計算式が登録されていません"));
 		formulaMapper.delete(id);
 	}
 

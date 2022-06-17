@@ -20,13 +20,17 @@ public class FormulaService {
 		this.formulaMapper = formulaMapper;
 	}
 
-	public LocalDate calculateDate(Formula formula, LocalDate date) throws Exception {
+	public LocalDate calculateDate(int id, LocalDate inputDate) throws Exception {
+
+		Formula formula = findOne(id);
 		LocalDate result;
+
 		if (formula.getPlusOrMinus().equals("＋")) {
-			result = date.plusYears(formula.getYear()).plusMonths(formula.getMonth()).plusDays(formula.getDay());
+			result = inputDate.plusYears(formula.getYear()).plusMonths(formula.getMonth()).plusDays(formula.getDay());
 			return result;
 		} else if (formula.getPlusOrMinus().equals("−")) {
-			result = date.minusYears(formula.getYear()).minusMonths(formula.getMonth()).minusDays(formula.getDay());
+			result = inputDate.minusYears(formula.getYear()).minusMonths(formula.getMonth())
+					.minusDays(formula.getDay());
 			return result;
 		} else {
 			throw new Exception("この計算式は有効ではありません");

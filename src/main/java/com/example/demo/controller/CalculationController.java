@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Formula;
 import com.example.demo.form.CalculationForm;
 import com.example.demo.service.FormulaService;
 
@@ -44,12 +43,11 @@ public class CalculationController {
 
 		try {
 
-			LocalDate date = LocalDate.parse(calculationForm.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			Formula formula = formulaService.findOne(id);
-			LocalDate result = formulaService.calculateDate(formula, date);
+			LocalDate inputDate = LocalDate.parse(calculationForm.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate result = formulaService.calculateDate(id, inputDate);
 
-			model.addAttribute("date", date.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
-			model.addAttribute("formula", formula.getName());
+			model.addAttribute("date", inputDate.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
+			model.addAttribute("formula", formulaService.findOne(id).getName());
 			model.addAttribute("result", result.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
 			return "result";
 

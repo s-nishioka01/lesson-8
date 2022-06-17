@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Formula;
 import com.example.demo.form.CalculationForm;
 import com.example.demo.service.FormulaService;
 
@@ -44,24 +43,11 @@ public class CalculationController {
 
 		try {
 
-			Formula formula = formulaService.findOne(id);
-			LocalDate date = LocalDate.parse(calculationForm.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			LocalDate result;
+			LocalDate inputDate = LocalDate.parse(calculationForm.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate result = formulaService.calculateDate(id, inputDate);
 
-			if (formula.getPlusOrMinus().equals("＋")) {
-				result = date.plusYears(formula.getYear()).plusMonths(formula.getMonth()).plusDays(formula.getDay());
-			} else if (formula.getPlusOrMinus().equals("−")) {
-				result = date.minusYears(formula.getYear()).minusMonths(formula.getMonth()).minusDays(formula.getDay());
-			} else {
-				LocalDate today = LocalDate.now();
-				model.addAttribute("today", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-				model.addAttribute("formulaList", formulaService.getFormulaList());
-				model.addAttribute("error", "この計算式は有効ではありません");
-				return "top";
-			}
-
-			model.addAttribute("date", date.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
-			model.addAttribute("formula", formula.getName());
+			model.addAttribute("date", inputDate.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
+			model.addAttribute("formula", formulaService.findOne(id).getName());
 			model.addAttribute("result", result.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日")));
 			return "result";
 
@@ -77,7 +63,7 @@ public class CalculationController {
 				LocalDate today = LocalDate.now();
 				model.addAttribute("today", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 				model.addAttribute("formulaList", formulaService.getFormulaList());
-				model.addAttribute("error", "計算式が登録されていません");
+				model.addAttribute("error", e.getMessage());
 				return "top";
 			}
 

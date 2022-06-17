@@ -109,7 +109,7 @@ public class FormulaController {
 			return "redirect:/formula";
 		} catch (Exception e) {
 			model.addAttribute("formulaList", formulaService.getFormulaList());
-			model.addAttribute("error", "データが登録されていません");
+			model.addAttribute("error", e.getMessage());
 			return "formula";
 		}
 	}
@@ -121,7 +121,7 @@ public class FormulaController {
 			return "redirect:/formula";
 		} catch (Exception e) {
 			model.addAttribute("formulaList", formulaService.getFormulaList());
-			model.addAttribute("error", "データが登録されていません");
+			model.addAttribute("error", e.getMessage());
 			return "formula";
 		}
 

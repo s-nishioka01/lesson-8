@@ -46,19 +46,13 @@ public class FormulaService {
 	}
 
 	public void updateFormulaList(FormulaForm formulaForm) throws Exception {
-		try {
-			formulaMapper.update(formulaForm);
-		} catch (Exception e) {
-			throw new Exception("計算式が登録されていません");
-		}
+		formulaMapper.findOne(formulaForm.getId()).orElseThrow(() -> new Exception("フォームの送信に失敗しました"));
+		formulaMapper.update(formulaForm);
 	}
 
 	public void deleteFormulaList(int id) throws Exception {
-		try {
-			formulaMapper.delete(id);
-		} catch (Exception e) {
-			throw new Exception("計算式が登録されていません");
-		}
+		formulaMapper.findOne(id).orElseThrow(() -> new Exception("フォームの送信に失敗しました"));
+		formulaMapper.delete(id);
 	}
 
 }
